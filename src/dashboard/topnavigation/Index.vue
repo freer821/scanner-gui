@@ -1,27 +1,10 @@
 <template>
   <header class="h-20 items-center relative z-10">
     <div
-      class="
-        flex flex-center flex-col
-        h-full
-        justify-center
-        mx-auto
-        relative
-        px-3
-        text-white
-        z-10
-      "
+      class="flex flex-center flex-col h-full justify-center mx-auto relative px-3 text-white z-10"
     >
       <div
-        class="
-          flex
-          items-center
-          pl-1
-          relative
-          w-full
-          sm:ml-0 sm:pr-2
-          lg:max-w-68
-        "
+        class="flex items-center pl-1 relative w-full sm:ml-0 sm:pr-2 lg:max-w-68"
       >
         <div class="flex group h-full items-center relative w-12">
           <button
@@ -36,33 +19,10 @@
         </div>
         <div class="container flex left-0 relative w-3/4">
           <div
-            class="
-              group
-              hidden
-              items-center
-              ml-8
-              relative
-              w-full
-              md:flex
-              lg:w-72
-            "
+            class="group hidden items-center ml-8 relative w-full md:flex lg:w-72"
           >
             <div
-              class="
-                absolute
-                block
-                cursor-pointer
-                flex
-                items-center
-                justify-center
-                h-10
-                p-3
-                pr-2
-                text-gray-500 text-sm
-                uppercase
-                w-auto
-                sm:hidden
-              "
+              class="absolute block cursor-pointer flex items-center justify-center h-10 p-3 pr-2 text-gray-500 text-sm uppercase w-auto sm:hidden"
             >
               <svg
                 fill="none"
@@ -79,19 +39,7 @@
               </svg>
             </div>
             <svg
-              class="
-                absolute
-                fill-current
-                h-4
-                hidden
-                left-0
-                ml-4
-                pointer-events-none
-                text-gray-500
-                w-4
-                group-hover:text-gray-400
-                sm:block
-              "
+              class="absolute fill-current h-4 hidden left-0 ml-4 pointer-events-none text-gray-500 w-4 group-hover:text-gray-400 sm:block"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
             >
@@ -101,37 +49,13 @@
             </svg>
             <input
               type="text"
-              class="
-                bg-gray-800
-                block
-                leading-normal
-                pl-10
-                py-1.5
-                pr-4
-                ring-opacity-90
-                rounded-2xl
-                text-gray-400
-                w-full
-                focus:border-transparent
-                focus:outline-none
-                focus:ring-2
-                focus:ring-blue-500
-              "
+              class="bg-gray-800 block leading-normal pl-10 py-1.5 pr-4 ring-opacity-90 rounded-2xl text-gray-400 w-full focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Search"
             />
           </div>
         </div>
         <div
-          class="
-            flex
-            items-center
-            justify-end
-            ml-5
-            p-1
-            relative
-            w-full
-            sm:mr-0 sm:right-auto
-          "
+          class="flex items-center justify-end ml-5 p-1 relative w-full sm:mr-0 sm:right-auto"
         >
           <a href="#" class="block pr-5">
             <svg
@@ -184,8 +108,9 @@
           <a href="#" class="block relative">
             <img
               alt="Maurice Lokumba"
-              src="/images/1.jpg"
+              src="/images/2.png"
               class="h-10 mx-auto object-cover rounded-full w-10"
+              @click="triggerScann"
             />
           </a>
         </div>
@@ -195,7 +120,16 @@
 </template>
 
 <script setup>
-import { inject } from 'vue';
+import { inject } from "vue";
 
-const toggle = inject('toggle');
+const toggle = inject("toggle");
+
+function triggerScann() {
+  fetch("http://localhost:5000/api/image")
+    .then((response) => response.blob())
+    .then((blob) => {
+      const imageUrl = URL.createObjectURL(blob);
+      console.log(imageUrl);
+    });
+}
 </script>

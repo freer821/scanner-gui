@@ -1,14 +1,10 @@
 {
-  "name": "dashboard-v4-vue",
+  "name": "scanner-gui",
   "version": "1.0.0",
   "author": {
-    "name": "Enoch Ndika"
+    "name": "Zhenyu Geng"
   },
   "licence": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/salvia-kit/dashboard-v4-vue.git"
-  },
   "keywords": [
     "ui",
     "vue",
@@ -26,8 +22,11 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "element-plus": "^2.2.3",
+    "viewerjs": "^1.10.5",
     "vue": "^3.2.13",
-    "vue-router": "4"
+    "vue-router": "4",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.9.1",
