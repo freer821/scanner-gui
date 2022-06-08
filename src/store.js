@@ -25,11 +25,17 @@ const store = createStore({
     },
   },
   actions: {
-    fetchAllImages({ commit }, images) {
+    fetchAllImages({ commit }) {
       return new Promise((resolve, reject) => {
         try {
-          commit("setImages", images);
-          resolve();
+          fetch("http://localhost:5555/image-list")
+            .then(reponse => reponse.json())
+            .then(data => {
+              console.log(data)
+              commit("addImage", data);
+              resolve();
+            })
+            .catch((err) => reject(err));
         } catch (err) {
           reject(err);
         }
@@ -39,10 +45,10 @@ const store = createStore({
     scanImage({ commit }) {
       return new Promise((resolve, reject) => {
         try {
-          fetch("http://localhost:5000/api/image")
-            .then((reponse) => reponse.blob())
-            .then((blob) => {
-              commit("addImage", { blob: blob });
+          fetch("http://localhost:5555/capture")
+            .then((reponse) => reponse.json())
+            .then(data => {
+              commit("addImage", data);
               resolve();
             })
             .catch((err) => reject(err));

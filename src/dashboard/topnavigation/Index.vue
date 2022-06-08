@@ -105,14 +105,14 @@
               />
             </svg>
           </a>
-          <a href="#" class="block relative">
+          <!--a href="#" class="block relative">
             <img
               alt="Maurice Lokumba"
               src="/images/2.png"
               class="h-10 mx-auto object-cover rounded-full w-10"
               @click="triggerScann"
             />
-          </a>
+          </a-->
         </div>
       </div>
     </div>
@@ -123,13 +123,13 @@
 import { inject } from "vue";
 
 const toggle = inject("toggle");
-
-function triggerScann() {
-  fetch("http://localhost:5000/api/image")
-    .then((response) => response.blob())
-    .then((blob) => {
-      const imageUrl = URL.createObjectURL(blob);
-      console.log(imageUrl);
-    });
+</script>
+<script>
+export default {
+  methods: {
+    triggerScann() {
+      this.$store.dispatch('scanImage')
+    } 
+  }
 }
 </script>
